@@ -1,28 +1,34 @@
 services:
-  mi-mongo:
-    container_name: mi-mysql
+  mi-mysql-2:
+    container_name: mi-mysql-2
     networks:
-      - mi-red
+      - mi-mysql-red
     volumes:
-      - mi-volumen:/data/db
-    stdin_open: true # -i
-    tty: true # -t
-    image: mongo
-
-  mi-mongo-express:
-    container_name: mi-mongo-express
-    networks:
-      - mi-red
+      - mi-mysql-vol:/data/db
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mi-mongo
-    ports:
-      - 8081:8081
+      - MYSQL_ROOT_PASSWORD=pass
     stdin_open: true # -i
     tty: true # -t
-    image: mongo-express
+    image: mysql
+
+  mi-dashboard-2:
+    container_name: mi-dashboard
+    networks:
+      - mi-mysql-red
+    environment:
+      - PMA_HOST=mi-mysql
+    ports:
+      - 8080:80
+    stdin_open: true # -i
+    tty: true # -t
+    image: phpmyadmin
 
 networks:
-  mi-red:
+  mi-mysql-red:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
 
 volumes:
-  mi-volumen:
+  mi-mysql-vol:

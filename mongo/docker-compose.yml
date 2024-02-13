@@ -1,6 +1,6 @@
 services:
-  mi-mongo:
-    container_name: mi-mongo
+  mi-mongo-2:
+    container_name: mi-mongo-2
     networks:
       - mi-red
     volumes:
@@ -9,8 +9,8 @@ services:
     tty: true # -t
     image: mongo
 
-  mi-mongo-express:
-    container_name: mi-mongo-express
+  mi-mongo-express-2:
+    container_name: mi-mongo-express-2
     networks:
       - mi-red
     environment:
