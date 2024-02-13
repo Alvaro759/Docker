@@ -16,7 +16,7 @@ services:
     networks:
       - mi-mysql-red-2
     environment:
-      - PMA_HOST=mi-mysql
+      - PMA_HOST=mi-mysql-2
     ports:
       - 8080:80
     stdin_open: true # -i
