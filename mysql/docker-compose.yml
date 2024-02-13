@@ -12,7 +12,7 @@ services:
     image: mysql
 
   mi-dashboard-2:
-    container_name: mi-dashboard
+    container_name: mi-dashboard-2
     networks:
       - mi-mysql-red-2
     environment:
