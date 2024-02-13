@@ -14,7 +14,7 @@ services:
     networks:
       - mi-red
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mi-mongo
+      - ME_CONFIG_MONGODB_SERVER=mi-mongo-2
     ports:
       - 8081:8081
     stdin_open: true # -i
