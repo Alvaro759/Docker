@@ -2,7 +2,7 @@ services:
   mi-mysql-2:
     container_name: mi-mysql-2
     networks:
-      - mi-mysql-red
+      - mi-mysql-red-2
     volumes:
       - mi-mysql-vol:/data/db
     environment:
@@ -14,7 +14,7 @@ services:
   mi-dashboard-2:
     container_name: mi-dashboard
     networks:
-      - mi-mysql-red
+      - mi-mysql-red-2
     environment:
       - PMA_HOST=mi-mysql
     ports:
@@ -24,7 +24,7 @@ services:
     image: phpmyadmin
 
 networks:
-  mi-mysql-red:
+  mi-mysql-red-2:
     ipam:
       driver: default
       config:
