@@ -1,28 +1,32 @@
 services:
+# docker run -it -d --name mi-mongo-2 --net mi-red --mount source=mi-volumen,target=/data/db mongo
   mi-mongo-2:
-    container_name: mi-mongo-2
+    container_name: mi-mongo-2 # --name mi-mongo-2
     networks:
-      - mi-red
+      - mi-red   # --net mi-red
     volumes:
-      - mi-volumen:/data/db
-    stdin_open: true # -i
-    tty: true # -t
-    image: mongo
+      - mi-volumen:/data/db  #--mount source=mi-volumen,target=/data/db
+    stdin_open: true #-i Para que crearla
+    tty: true # -t  de forma -it
+    image: mongo    # imagen del mongo
 
+# docker run -it -d --name mi-mongo-express-2 --net mi-red -e ME_CONFIG_MONGODB_SERVER=mi-mongo-2 -p 8081:8081 mongo-express
   mi-mongo-express-2:
-    container_name: mi-mongo-express-2
+    container_name: mi-mongo-express-2 # --name mi-mongo-express-2
     networks:
-      - mi-red
+      - mi-red # --net mi-red
     environment:
-      - ME_CONFIG_MONGODB_SERVER=mi-mongo-2
+      - ME_CONFIG_MONGODB_SERVER=mi-mongo-2 #-e ME_CONFIG_MONGODB_SERVER=mi-mongo-2
     ports:
-      - 8081:8081
-    stdin_open: true # -i
-    tty: true # -t
-    image: mongo-express
+      - 8081:8081 #-p 8081:8081
+    stdin_open: true # -i Para que crearla
+    tty: true # -t  de forma -it
+    image: mongo-express # imagen del mongo-express
 
+#docker network create mi-red
 networks:
   mi-red:
 
+#docker network create mi-volumen
 volumes:
   mi-volumen:
